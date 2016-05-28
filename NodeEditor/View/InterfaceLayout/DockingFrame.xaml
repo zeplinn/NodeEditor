@@ -1,0 +1,70 @@
+﻿<DockPanel x:Class="NodeEditor.View.InterfaceLayout.DockingFrame"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:NodeEditor.View.InterfaceLayout"
+             xmlns:vm="clr-namespace:NodeEditor.ViewModel"
+           xmlns:model="clr-namespace:NodeEditor.Model"
+           xmlns:comp="clr-namespace:NodeEditor.View.DocumentComponents"
+           xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+           xmlns:b="clr-namespace:NodeEditor.Behaviors"
+             mc:Ignorable="d" 
+           HorizontalAlignment="Stretch"
+           VerticalAlignment="Stretch"
+             d:DesignHeight="300" d:DesignWidth="300">
+    <DockPanel.DataContext>
+        <vm:NodeEditorVM/>
+    </DockPanel.DataContext>
+    <DockPanel.Resources>
+        
+        <DataTemplate DataType="{x:Type model:Node}">
+            <comp:NodeLBI/>
+        </DataTemplate>
+    </DockPanel.Resources>
+    <local:MenuPanel DockPanel.Dock="Left" Loaded="MenuPanel_Loaded"></local:MenuPanel>
+    <Grid DockPanel.Dock="Right">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        
+    <!--<ListBox Background="Green" x:Name="Box" Grid.Column="0" ItemsSource="{Binding Nodes}" >
+        
+        --><!--<ListBox.Template>
+            
+            <ControlTemplate TargetType="ItemsControl">
+                <ItemsPresenter />
+            </ControlTemplate>
+            
+        </ListBox.Template>
+        <ItemsControl.ItemContainerStyle>
+            <Style>
+                <Setter Property="Control.Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="ContentControl">
+                            <ContentControl/>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+        </ItemsControl.ItemContainerStyle>--><!--
+        <ItemsControl.ItemsPanel>
+            
+            <ItemsPanelTemplate>
+                <Canvas Background="Green"/>
+            </ItemsPanelTemplate>
+        </ItemsControl.ItemsPanel>
+        
+    </ListBox>-->
+    <comp:NodeContainer Grid.Column="0" Grid.ColumnSpan="2" ItemsSource="{Binding Nodes}">
+        
+        <comp:NodeContainer.ItemsPanel>
+            <ItemsPanelTemplate>
+                <Canvas></Canvas>
+            </ItemsPanelTemplate>
+        </comp:NodeContainer.ItemsPanel>
+    </comp:NodeContainer>
+    </Grid>
+
+</DockPanel>
